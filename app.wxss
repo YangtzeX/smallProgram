@@ -1,0 +1,90 @@
+/**app.wxss**/
+page{
+  --bg-color: #f1f1f1;
+  --bg-center-color: #5996EB;
+  --title-color: #333;
+  --text-color: #999;
+  --c1: #303030;
+  --tips-color: #F55756;
+  --font-size-10: 20rpx;
+  --font-size-12: 24rpx;
+  --font-size-14: 28rpx;
+  --font-size-15: 30rpx;
+  --font-size-16: 32rpx;
+  --font-size-18: 36rpx;
+  --font-size-20: 40rpx;
+  --font-size-22: 44rpx;
+  --font-size-24: 48rpx;
+  --font-size-26: 52rpx;
+}
+/* 没有数据时图片的样式 */
+.prompt{
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.prompt .hint {
+  font-size: var(--font-size-18);
+  color: var(--text-color);
+}
+/* 处理1px问题的边框 */
+.border-t:before {
+  position: absolute; 
+  content: '';
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 1px;
+  background-color: #e3e5e9;
+  -webkit-transform: scale(1, 0.5);
+  transform: scale(1, 0.5);
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+.border-b:after {
+  position: absolute; 
+  content: '';
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: #e3e5e9;
+  -webkit-transform: scale(1, 0.5);
+  transform: scale(1, 0.5);
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+.border-l:after {
+  position: absolute; 
+  content: '';
+  width: 1px;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #e3e5e9;
+  -webkit-transform: scale(0.5, 1);
+  transform: scale(0.5, 1);
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+.border-r:after {
+  position: absolute; 
+  content: '';
+  width: 1px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #e3e5e9;
+  -webkit-transform: scale(0.5, 1);
+  transform: scale(0.5, 1);
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+/* 一行溢出隐藏,多余部分用...代替 */
+.line1 { overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+/* 超出两行,三行隐藏 */
+.line2,.line3{word-break:break-all;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;}
+.line2{-webkit-line-clamp:2;}
+.line3{-webkit-line-clamp:3;}

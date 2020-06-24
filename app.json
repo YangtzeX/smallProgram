@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/Simulation/Simulation",
+    "pages/vip/vip",
+    "pages/my/my",
+    "pages/questiontype/questiontype",
+    "pages/transit/transit",
+    "pages/logs/logs",
+    "pages/login/login",
+    "pages/updatePassword/updatePassword",
+    "pages/wrongTopic/wrongTopic",
+    "pages/practice/practice",
+    "pages/changePassword/changePassword",
+    "pages/register/register",
+    "pages/myInfo/myInfo",
+    "pages/newsDetail/newsDetail",
+    "pages/wrongList/wrongList",
+    "pages/wrongCase/wrongCase",
+    "pages/caseTopic/caseTopic",
+    "pages/bindMobile/bindMobile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "安管考试通",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#535353",
+    "selectedColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "iconPath": "images/icon_home.png",
+        "selectedIconPath": "images/icon_home_on.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "images/home_my.png",
+        "selectedIconPath": "images/icon_my_on.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

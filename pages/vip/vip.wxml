@@ -1,0 +1,75 @@
+<!--pages/vip/vip.wxml-->
+<wxs module="m1">
+  function format(ts) {
+    var d = getDate(ts*1000) 
+    return [d.getFullYear(), d.getMonth()+1, d.getDate()].join('-')
+      + ' 到期'
+  }
+  module.exports.format = format
+</wxs>
+<view class="container">
+  <view class="vip-bg">
+    <view class="vip-box">
+      <image mode="widthFix" src="{{vip?'../../images/membership_card_bg.png':'../../images/membership_card_gray_bg.png'}}" />
+      <view class="vip-info">
+        <view class="vip-info-left">
+          <view class="unlock">
+            <image mode="widthFix" src="{{vip?'../../images/icon_diamond.png':'../../images/icon_diamond_gray.png'}}" />
+            <text class="{{vip?'active':''}}">{{vip?'已解锁全部题库':'开通会员 · 解锁全部题库'}}</text>
+          </view>
+          <view class="time">
+            <image mode="widthFix" src="{{vip?'../../images/icon_membertime.png':'../../images/limit_discounts_gray.png'}}" />
+            <text class="{{vip?'active':''}}">{{vip?m1.format(endDate):'限时折扣超享'}}</text>
+          </view>
+        </view>
+        <view class="vip-info-right" wx-if="{{vip}}" bindtap="renew">
+            立即续费
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bg-bottom"></view>
+  <view class="recharge" wx:if="{{!vip || renew}}">
+    <view class="recharge-box {{rechargeIdx==index?'recharge-active':''}}" wx:for="{{memberCard}}" wx:key="index" data-index="{{index}}" data-id="{{item.id}}" bindtap="rechargeClick"> 
+      {{item.name}}：￥{{item.price}}元
+      <view class="hot" wx:if="{{item.is_type}}">
+        {{item.is_type}}
+       </view>
+      <!-- <view class="item {{rechargeIdx==0?'recharge-active':''}}" data-index="0" bindtap="rechargeClick">季卡：￥{{tika}}元</view>
+      <view class="item {{rechargeIdx==1?'recharge-active':''}}" data-index="1" bindtap="rechargeClick">
+      年卡：￥{{annualfee}}元
+       <view class="hot">
+        超值
+       </view> 
+      </view>-->
+    </view>
+  </view>
+  <view class="tips" wx:if="{{!vip || renew}}">
+    <view class="title">温馨提示:</view>
+    <view class="describe">*虚拟商品充值后不支持退款（仅限于安管考试通使用）</view>
+  </view>
+  <view class="btn" bindtap="rechargePay" wx:if="{{!vip || renew}}">
+    立即开通
+  </view>
+  <view class="vip-treatment" wx:else>
+    <view class="vip-tile">
+    <text>会员尊享</text></view>
+    <view class="vip-describe">
+      <view class="vip-item">
+        <image mode="widthFix" src="../../images/unlock_test.png" />
+        <text class="treatment-title">解锁题库</text>
+        <text class="treatment-describe">解锁全部练习题库</text>
+      </view>
+      <view class="vip-item">
+        <image mode="widthFix" src="../../images/simulation_test.png" />
+        <text class="treatment-title">模拟测试</text>
+        <text class="treatment-describe">模拟安管考核试卷</text>
+      </view>
+      <view class="vip-item">
+        <image mode="widthFix" src="../../images/vip_id.png" />
+        <text class="treatment-title">尊贵身份</text>
+        <text class="treatment-describe">随时为知识付费</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,237 @@
+/* pages/practice/practice.wxss */
+.container {
+  position: relative;
+}
+button {
+  padding: 0 !important;
+}
+.top {
+  /* margin-bottom: 120rpx; */
+  padding: 0 30rpx;
+  padding-bottom: 120rpx;
+}
+.title {
+  position: relative;
+  padding: 30rpx 0;
+  line-height:50rpx;
+  color: var(--title-color);
+  font-size: var(--font-size-16);
+  margin-bottom: 10rpx;
+}
+.slide-image{
+  width: 100%;
+  height: 200px;
+  display: block;
+}
+.parsing .tag {
+  width: 210rpx;
+  padding: 15rpx 20rpx;
+  border-radius: 6px;
+  font-size: var(--font-size-16);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+.tag1 {
+  background: var(--tips-color);
+}
+.tag2 {
+  background: var(--bg-center-color);
+}
+.tag image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 24rpx;
+}
+.answer view {
+  margin-bottom: 24rpx;
+  font-size: var(--font-size-16);
+  color: var(--c1);
+}
+.true text,
+.bottom-true text,
+.false .color-true {
+  color: var(--bg-center-color);
+}
+.false text,
+.bottom-false text {
+  color: var(--tips-color);
+}
+.comfirm {
+  width: 50%;
+  margin: 60rpx auto;
+  padding: 30rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12rpx;
+  color: #fff;
+  background: var(--bg-center-color);
+  font-size: var(--font-size-16);
+}
+.bottom-pages {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #fff;
+}
+.bottom-pages image {
+  width: 36rpx;
+  height: 36rpx;
+}
+.bottom-content {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+}
+.bottom-content .img,
+.bottom-true,
+.bottom-false {
+  display: flex;
+  align-items: center;
+}
+.bottom-content text {
+  margin-left: 10rpx;
+}
+.bottom-pages button {
+  font-size: var(--font-size-13);
+  color: var(--c1);
+  padding:  0;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #fff;
+}
+button:not([size='mini']) {
+  width: 190rpx !important;
+}  
+/* 遮罩层题目总数 */
+.i-action-header {
+  padding: 13px;
+  text-align: left;
+}
+
+.i-action-header-left {
+  /* text-align: left;
+  font-size: 14px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  margin-right: 40rpx;
+}
+
+.i-action-header-left>text {
+  margin-right: 8px;
+}
+
+.i-action-header-left>text>text {
+  font-weight: bold;
+}
+
+.i-action-header-r {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.i-action-header-r>button {
+  margin: 0px;
+  flex: 1;
+  right: 0px;
+  width: 60px;
+  height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  white-space: nowrap;
+  user-select: none;
+  font-size: 14px;
+  border-radius: 2px;
+  border: 0!important;
+  position: relative;
+  text-decoration: none;
+  line-height: 24px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+  color: #fff!important;
+  background: #ff9c5e!important;
+}
+.col-class {
+  text-align: center;
+}
+
+.col-class-down {
+  text-align: center;
+}
+
+.col-class-sub {
+  position: absolute;
+  left: 80%;
+}
+
+.col-class-save {
+  position: absolute;
+  left: 60%;
+}
+view.i-action-ico {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 13px 0;
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+view.i-action-ico-bor {
+  width: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 3%;
+  margin-bottom: 3%;
+  width: 13%;
+  height: 0;
+  /* height: 80rpx; */
+  padding-bottom: 13%;
+  border-radius: 50%;
+}
+
+view.i-action-ico-bor>view {
+  position: relative;
+  /* margin: 1px; */
+  background: #d5d5d5;
+  width: 100%;
+  padding-bottom: 100%;
+  /* height: 80rpx; */
+  border-radius: 50%;
+  /* border-radius: 5px;
+  width: 100%;
+  height: 30px; */
+}
+view.i-action-ico-bor>view text { 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 30rpx;
+  color: #fff;
+}
+
+view.i-action-ico-bor>view.err {
+  background: var(--tips-color);
+}
+
+view.i-action-ico-bor>view.succ {
+  background: var(--bg-center-color);
+}
+
+view.i-action-ico-bor>view.def {
+  color: #18836b;
+  background: #95e4d2;
+}

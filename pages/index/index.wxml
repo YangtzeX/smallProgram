@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="swiper-container">
+    <swiper indicator-dots="{{indicatorDots}}" style='height:{{height}}px' circular="{{true}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrl}}" wx:key="index">
+        <swiper-item data-aa="{{imgUrl.length-1 === index?true:''}}" data-id="{{item.id}}" bindtap="swiperClick">
+          <image bindload='setContainerHeight' mode='widthFix' src="{{urlImg}}{{item.image}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="notice">
+   <view class="notice-left"><text> 通知</text><image mode="widthFix" src="../../images/icon_announcement.png" /></view>
+   <view class="notice-right">
+    <swiper class="news-swiper" autoplay="true" interval="2500" duration="500" vertical="true" circular="true">
+      <block wx:for="{{news}}" wx:key="index">
+        <swiper-item data-id="{{item.id}}" bindtap="newSClick">
+          <view>{{item.title}}</view>
+        </swiper-item>
+      </block>
+    </swiper>
+   </view>
+  </view>
+  <view class="vip" bindtap="vipClick">
+    <image mode="widthFix" class="vip-img" src="../../images/vip_bg.png" />
+  </view>
+  <view class="subject">
+    <view class="subject-item" wx:for="{{subject}}" wx:key="index" data-index="{{index}}" bindtap="subjectClick">
+      <image mode="widthFix" src="{{item.url}}" />
+      <text>{{item.text}}</text>
+    </view>
+    <view class="subject-item" bindtap="errorClick">
+      <image mode="widthFix" src="../../images/wrong_test.png" />
+      <text>错题集</text>
+    </view>
+  </view>
+  <view class="examination">
+    <view class="examination-top">
+      <view class="examination-title">
+       <image mode="widthFix" src="../../images/mock_exam.png" /><text>模拟考试</text>
+      </view>
+      <!-- <view>
+        <image mode="widthFix" class="vip-img" src="../../images/" />
+      </view> -->
+    </view>
+    <view class="examination-box">
+      <view class="examination-item {{index==examinationList.length-1?'':'border-b'}}" wx:for="{{examinationList}}" wx:key="index" data-title="{{item.text}}" data-cateId="{{item.id}}" bindtap="examClick">
+       <image mode="widthFix" class="item-left" src="../../images/test_questions.png" />
+       <view class="item-center">
+         <view class="item-title">{{item.text}}</view>
+         <text class="describe">满分{{item.fullmark}}分, {{item.pass}}分及格</text>
+       </view>
+       <image mode="widthFix" class="item-right" src="../../images/icon_exam.png" />
+      </view>
+    </view>
+  </view>
+</view>
