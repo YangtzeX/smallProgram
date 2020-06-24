@@ -1,3 +1,0 @@
-.i-radio-cell::after{display:block}.i-radio-radio-left{float:left}.i-radio-radio-right{float:right}.i-radio-radio{vertical-align:middle}
-.i-radio-title{display:inline-block;vertical-align:middle} /* 选择题的文字超过一行会换行 */
-/* .i-radio-title{display:block;vertical-align:middle}  不让换行 ,但是上下对不齐 */
