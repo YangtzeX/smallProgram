@@ -1,0 +1,66 @@
+<!--pages/login/login.wxml-->
+<!-- 微信认证 -->
+<view>
+  <view class="login-title">
+    <view class="tip">广东省建筑施工企业管理人员</view>
+    <view class="tips">安全生产考核真题练习</view>
+  </view>
+  <view class='login-box'>
+    <view class='login-text'>
+      <view  class='btns main-bg-color'>
+        <button class='btns' open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+          <text>微信一键登录</text>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 手机号登录认证 -->
+<!-- 下面的标题需要在json页面加上
+  "navigationStyle": "custom",
+  "disableScroll": true 
+-->
+<!-- <view class="container">
+  <view class="nav" style='height:{{navH}}px'>
+    <view class='title1'>
+      {{title}}
+    </view> 
+  </view>
+  <view class="login-title">
+    <view class="tip">广东省建筑施工企业管理人员</view>
+    <view class="tips">安全生产考核真题练习</view>
+  </view>
+  <view class="box">
+    <view class="login-box">
+      <view class="title">真题练习</view>
+      <view class="item">
+        <view class="item-left">
+          <image mode="widthFix" src="../../images/login_user.png" />
+        </view>
+        <view class="item-center">
+          <input type="number" maxlength='11' value="{{phoneNum}}" placeholder="请输入手机号" bindinput="phoneInput" />
+        </view>
+        <view class="item-right" hidden='{{isShowPhoneBtn}}' bindtap='clearPhoneNumBindTap'>
+          <image mode="widthFix" src="../../images/close.png" />
+        </view>
+      </view>
+      <view class="item">
+        <view class="item-left">
+          <image mode="widthFix" src="../../images/logiin_password.png" />
+        </view>
+        <view class="item-center">
+          <input password='{{isPwdInputType}}' placeholder="请输入密码" bindinput='pwdInput'/>
+        </view>
+        <view class="item-right" bindtap='passTypechange'>
+          <image mode="widthFix" src="{{isPwdInputType?'../../images/on.png':'../../images/off.png'}}" />
+        </view>
+      </view>
+      <view class="btn" bindtap="login">
+        登录
+      </view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view wx:for="{{bottom}}" wx:key="index" data-id="{{item.id}}" data-title="{{item.name}}" bindtap="registerClick">{{item.name}}</view>
+  </view>
+</view> -->

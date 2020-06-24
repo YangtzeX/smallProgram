@@ -1,0 +1,11 @@
+<!--pages/newsDetail/newsDetail.wxml-->
+<!-- 通知详情 -->
+<import src="/common/wxParse/wxParse.wxml" />
+<view class='contain border-t'>
+  <view class='content'>
+    <view class='title'>{{news.title}}</view>
+    <view class='details'>
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    </view>
+  </view>
+</view>

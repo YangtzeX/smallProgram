@@ -1,0 +1,25 @@
+<!--pages/wrongTopic/wrongTopic.wxml-->
+<!-- 错题集 -->
+<view class="container">
+  <view class="question-bg">
+    <view class="title" wx:if="{{wrongIdx==0}}">主要负责人（A证）真题练习</view>
+    <view class="title" wx:if="{{wrongIdx==1}}">主要负责人（B证）真题练习</view>
+    <view class="title" wx:if="{{wrongIdx==2}}">主要负责人（C证）真题练习</view>
+  </view>
+  <view class="question-box">
+    <view class="secondary">
+      <view class="secondary-item {{wrongIdx==index?'active':'gray'}}" wx:for="{{wrongList}}" wx:key="index" data-index="{{index}}" bindtap="wrongClick">
+        <image mode="widthFix" src="{{item.url}}" />
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+    <view class="question-item {{index==questionList.length-1?'':'border-b'}}" wx:for="{{questionList.data}}" wx:key="index" wx:for-item="items" data-index="{{index}}" data-title="{{items.name}}" data-cateId="{{items.id}}" bindtap="questionClick">
+      <image mode="widthFix" class="item-left" src="../../images/test_questions.png" />
+       <view class="item-center">
+         <view class="item-title">{{items.name}}</view>
+          <text class="describe">{{!items.describe?'':items.describe}}</text>
+       </view>
+       <image mode="widthFix" class="item-right" src="../../images/icon_exam.png" />
+    </view>
+  </view>
+</view>

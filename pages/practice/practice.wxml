@@ -1,0 +1,181 @@
+<!--pages/practice/practice.wxml-->
+<!-- 习题练习页面 -->
+<view class="container border-t" >
+  <i-modal actions="{{actions}}" bind:click="handleClick" title="提醒" visible="{{visible}}">
+    <view>检测到您之前答题记录</view>
+  </i-modal>
+  <!-- 当内容为空时 -->
+  <view class='prompt' wx:if="{{list.length===0}}">
+    <image src="/images/noOrder.png"></image>
+    <view class="hint">暂未更新,去看看别的题吧~</view>
+  </view>
+  <!-- 题目 -->
+  <!-- hideInfo 隐藏数值或状态图标 -->
+  <i-progress wx:if="{{list.length>0}}" class="progress" hideInfo style="height:4rpx" percent="{{ percent }}" status="{{ status }}"></i-progress>
+  <view class="top" wx:if="{{list.length>0}}">
+    <!-- 页面内容 -->
+    <block wx:for="{{list}}" wx:key="idx" wx:for-index="outterIndex" wx:if="{{ outterIndex == tIndex }}">
+    
+      <view class="title border-b" >
+        <i-tag class="i-tags" color="blue" name="单选" type="border" wx:if="{{item.question_type==1}}">
+            单选
+        </i-tag>
+        <i-tag class="i-tags" color="blue" name="多选" type="border" wx:if="{{item.question_type==2}}">
+            多选
+        </i-tag>
+        <i-tag class="i-tags" color="blue" name="多选" type="border" wx:if="{{item.question_type==3}}">
+          判断
+        </i-tag>
+        {{outterIndex + 1 }}、{{item.title}}
+      </view>
+      <!-- 图片 -->
+      <swiper style="height:200px" indicator-dots="{{indicatorDots}}" circular="{{true}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{item.images.length>0}}">
+        <block wx:for="{{item.images}}" wx:key="index" wx:for-item="itemImg">
+          <swiper-item>
+            <image data-index="{{index}}" data-pics="{{item.images}}" bindtap="showImage" src="{{urlImg}}{{itemImg}}" class="slide-image" />
+          </swiper-item>
+        </block>
+      </swiper>
+      <!-- 单选组 -->
+      <i-panel wx:if="{{item.question_type === 1}}">
+        <i-radio-group current="{{item.addData.value}}" data-key="{{items.key}}" wx:for="{{item.extra}}" wx:key="{{items.key}}" wx:for-item="items" data-value="{{s[index]}}" data-id="{{item.id}}" bindchange="handleChange">
+          <i-radio value="{{s[index]}}.{{items.value}}" disabled="{{item.addData.disabled}}">
+          </i-radio>
+        </i-radio-group>
+      </i-panel>
+      <!-- 判断 -->
+      <i-panel wx:if="{{item.question_type === 3}}">
+        <i-radio-group current="{{item.addData.value}}" wx:for="{{item.extra}}" wx:key="{{items.key}}" wx:for-item="items" data-index="{{outterIndex}}" data-key="{{items.key}}" data-id="{{item.id}}" bindchange="judgeChange">
+          <i-radio value="{{items.value}}" disabled="{{item.addData.disabled}}">
+          </i-radio>
+        </i-radio-group>
+      </i-panel>
+      <!-- 多选 -->
+      <i-panel wx:if="{{item.question_type === 2}}">
+        <i-checkbox-group current="{{item.addData.value ? item.addData.value : current}}"  wx:for="{{item.extra}}" wx:key="{{items.key}}" data-key="{{items.key}}" wx:for-item="items" data-value="{{s[index]}}" bindchange="checkboxChange">
+          <i-checkbox value="{{s[index]}}.{{items.value}}" disabled="{{item.addData.disabled}}">
+          </i-checkbox>
+        </i-checkbox-group>
+      </i-panel>
+      <!-- 多选时的确认按钮:当有数据的时候就隐藏 -->
+      <view class="comfirm" wx:if="{{item.question_type === 2 && !item.addData}}" data-id="{{item.id}}" data-value="{{s[index]}}" bindtap="confirmCkick">
+        确认
+      </view>
+      <!-- 解析 -->
+      <view class="parsing" wx:if="{{item.addData}}">
+        <i-divider content="题目详解"></i-divider>
+        <!-- 单选 -->
+        <view class="" wx:if="{{item.question_type === 1}}">
+          <view class="tag tag1" wx:if="{{item.addData.key == 1}}">
+            <image src="/images/icon_sad.png"></image>
+            <text>回答错误</text>
+          </view>
+          <view class="tag tag2" wx:if="{{item.addData.key == 2 }}">
+            <image src="/images/xiaolian.png"></image>
+            <text>回答正确</text>
+          </view>
+        </view>
+        <!-- 判断 -->
+        <view class="" wx:if="{{item.question_type === 3}}">
+          <view class="tag tag1" wx:if="{{item.addData.key == 1}}">
+            <image src="/images/icon_sad.png"></image>
+            <text>回答错误</text>
+          </view>
+          <view class="tag tag2" wx:if="{{item.addData.key == 2 }}">
+            <image src="/images/xiaolian.png"></image>
+            <text>回答正确</text>
+          </view>
+        </view>
+        <!-- 多选 -->
+        <view class="" wx:if="{{item.question_type === 2}}">
+          <view class="tag tag1" wx:if="{{item.addData.answer_Length != item.answer_num || item.addData.key.length != item.answer_num}}">
+            <image src="/images/icon_sad.png"></image>
+            <text>回答错误</text>
+          </view>
+          <view class="tag tag2" wx:if="{{item.addData.answer_Length == item.answer_num && item.addData.key.length == item.answer_num}}">
+            <image src="/images/xiaolian.png"></image>
+            <text>回答正确</text>
+          </view>
+        </view>
+        <!-- 解析 -->
+        <view class="answer" >
+          <view class="true">  
+            正确答案： <text wx:for="{{item.extra}}" wx:key="index" wx:for-item="items"  wx:if="{{items.key==2}}">{{s[index]}}</text>
+          </view>
+          <view class="false" >
+            我的答案： 
+            <text wx:if="{{item.question_type === 1}}" class="{{item.addData.key == 2 ? 'color-true' : ''}}">{{item.addData.isAnswer}}</text>
+            <text wx:if="{{item.question_type === 2}}" class="{{item.addData.answer_Length == item.answer_num && item.addData.key.length == item.answer_num ? 'color-true' : ''}}">{{item.addData.isAnswer}}</text>
+            <text wx:if="{{item.question_type === 3}}" class="{{item.addData.key == 2 ? 'color-true' : ''}}">{{item.addData.value}}</text>
+          </view>
+          <view class="reason">
+            答案解析：{{item.reason}}
+          </view>
+        </view>
+      </view>
+      <!-- 分页 -->
+      <view class="bottom-pages border-t">
+        <view class="bottom-left">
+          <button class="last" bindtap="up"><i-icon type="return" size="20" style="margin-right:10rpx" />上一题</button>
+        </view>
+        <view class="bottom-content" bindtap="maskClick">
+          <view class="img">
+            <image src="/images/icon_right.png"></image>
+            <text>{{outterIndex + 1}}/{{total}}</text>
+          </view>
+          <view class="bottom-true">
+            <image src="/images/true.png"></image>
+            <text>{{questionOk}}</text>
+          </view>
+          <view class="bottom-false">
+            <image src="/images/error.png"></image>
+            <text>{{questionErr}}</text>
+          </view>
+        </view>
+        <view class="bottom-right">
+          <button class='next toppicAre' data-data="{{item.addData}}" bindtap='next'>下一题<i-icon type="enter" size="20" style="margin-left:10rpx" /></button>
+          
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 总题目列表 -->
+  <i-action-sheet actions="" bind:cancel="actionCancel" bind:click="actionClickItem" visible="{{actionVisible}}">
+    <view slot="header" style="padding:2px">
+      <view class="i-action-header">
+        <i-row>
+          <i-col Class="col-class" span="20">
+            <view class="i-action-header-left">
+              <text>总题数: <text style="font-weight: bold;color:#303030">{{total}}题</text>
+              </text>
+              <text> 
+                <text style="color:#5996EB">正确:{{questionOk}}题</text>
+              </text>
+              <text> <text style="color:#F55756">错误:{{questionErr}}题</text>
+              </text>
+            </view>
+          </i-col>
+          <i-col Class="col-class" span="4">
+              <view class="i-action-header-r">
+                <button bindtap="actionCancel" size="small" style="padding:0px;">关闭</button>
+              </view>
+          </i-col>
+        </i-row>
+      </view>
+      <scroll-view scroll-y style="height: 80vh" bindscrolltolower="lower" bindscroll="scroll"> 
+        <view class="i-action-ico">
+          <view class="i-action-ico-bor" for:key="i" wx:for="{{list}}" wx:for-index="idx">
+          <!-- 多选 -->
+            <view wx:if="{{item.question_type === 2 && item.addData}}" class="{{tIndex==idx?'def':''}} {{item.addData.answer_Length == item.answer_num && item.addData.key.length == item.answer_num ?'succ':item.addData.answer_Length != item.answer_num || item.addData.key.length != item.answer_num?'err':''}}">
+              <text>{{idx+1}}</text>
+            </view>
+            <!-- 单选和判断 -->
+            <view wx:else class="{{tIndex==idx?'def':''}} {{item.addData.key==2?'succ':item.addData.key==1?'err':''}}">
+              <text>{{idx+1}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </i-action-sheet>
+</view>

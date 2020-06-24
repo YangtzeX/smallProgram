@@ -1,0 +1,35 @@
+<!--pages/bindMobile/bindMobile.wxml-->
+<!-- 绑定手机号 -->
+<view class="container">
+  <view class="login-title">
+    <view class="tip">广东省建筑施工企业管理人员</view>
+    <view class="tips">安全生产考核真题练习</view>
+  </view>
+  <view class="box">
+    <view class="login-box">
+      <view class="item">
+        <view class="item-left">
+          <image mode="widthFix" src="../../images/login_user.png" />
+        </view>
+        <view class="item-center">
+          <input type="number" maxlength='11' value="{{phoneNum}}" placeholder="请填写手机号" bindinput="phoneInput" />
+        </view>
+        <view class="item-right" hidden='{{isShowPhoneBtn}}' bindtap='clearPhoneNumBindTap'>
+          <image mode="widthFix" src="../../images/close.png" />
+        </view>
+      </view>
+      <view class="item">
+        <view class="item-left">
+          <image mode="widthFix" src="../../images/code.png" />
+        </view>
+        <view class="item-center">
+          <input type="text" value="{{verification}}" placeholder="请输入验证码" bindinput="verificationClick"></input>
+        </view>
+        <view class='verify-code {{isSendVerifyCode? "back-color" : "main-color"}}' bindtap='getVerifyCodeBindTap'>{{isSendVerifyCode?waitingTimeLength+'s后可重发' : '获取验证码'}}</view>
+      </view>
+      <view class="btn" bindtap="registerClick">
+        <text> 绑定 </text>
+      </view>
+    </view>
+  </view>
+</view>

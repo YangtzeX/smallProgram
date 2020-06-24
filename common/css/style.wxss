@@ -1,0 +1,60 @@
+/* 公共样式 */
+/* 修改复选框样式 */
+.checkbox .wx-checkbox-input {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  border: 2px solid rgba(255, 129, 92, 1);
+}
+.checkbox .wx-checkbox-input-disabled {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  background: #f3f3f3;
+  border: 1px solid rgba(201, 201, 201, 1);
+}
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: rgba(255, 129, 92, 1);
+}
+.checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+
+/* 单选框 */
+/* 未选中的 背景样式 */
+radio .wx-radio-input{ 
+  height: 36rpx; 
+  width: 36rpx;
+  border-radius: 50%;
+  background: transparent;
+}
+/* 选中后的 背景样式 */
+radio .wx-radio-input.wx-radio-input-checked{
+ border: none;
+}
+/* 选中后的 对勾样式 */
+radio .wx-radio-input.wx-radio-input-checked::before{
+ border-radius: 50%;
+ width: 36rpx; 
+ height: 36rpx;
+ line-height: 36rpx;
+ text-align: center;
+ font-size:36rpx; 
+ color:#fff;
+ background: #33c9ff;
+ border: 6rpx solid #33c9ff;
+}
+radio .wx-radio-input.wx-radio-input-disabled { 
+  border : 2rpx solid #999999;
+  border-radius: 100%;
+  background : none;
+}
